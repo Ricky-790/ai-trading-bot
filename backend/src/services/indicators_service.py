@@ -229,15 +229,3 @@ class IndicatorsService:
 
 
 indicators_service = IndicatorsService()
-
-
-# async def main():
-#     indicators_service = IndicatorsService()
-#     ctx = await indicators_service.get_market_context(
-#         num_candles=50, resolution=ResolutionEnum.ONE_HOUR
-#     )
-#     print(ctx.model_dump_json(indent=4))
-
-
-# if __name__ == "__main__":
-#     asyncio.run(main())

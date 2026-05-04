@@ -91,13 +91,7 @@ class AccountsService:
                 account_index=account_index,
                 api_private_keys=private_key,
             )
-            # print(f"CHECKING: {client.check_client()}")
-            # Note: change this to 2048 to trade spot ETH. Make sure you have at least 0.1 ETH to trade spot.
             market_index = int(os.getenv("BITCOIN_MARKET_ID", 1))
-            # best_price = await client.get_best_price(
-            #     market_index=market_index, is_ask=False
-            # )
-            # print(f"Best Price: {best_price}")
             tx, tx_hash, err = await client.create_market_order_if_slippage(
                 market_index=market_index,
                 client_order_index=0,
@@ -121,23 +115,3 @@ class AccountsService:
 
 
 accounts_service = AccountsService()
-
-
-async def main():
-    acc_serv = AccountsService()
-    # account_context = await acc_serv.get_account_context("281474976710642")
-    # print(account_context.model_dump_json(indent=4))
-    await acc_serv.create_position(
-        account_index="281474976710641",
-        private_key={
-            4: "4fa3582af50ce7f3c5fea115feb8e47c0d629f58d8e2d6c2847d3885ee00de33554f11b3d144d110"
-        },
-        side="LONG",
-        base_amount=0.0014,
-        is_ask=False,
-        reduce_only=False,
-    )
-
-
-# if __name__ == "__main__":
-#     asyncio.run(main())
